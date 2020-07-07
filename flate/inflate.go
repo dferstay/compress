@@ -922,6 +922,7 @@ func (f *decompressor) huffSym(h *huffmanDecoder) (int, error) {
 
 func makeReader(r io.Reader) Reader {
 	if rr, ok := r.(Reader); ok {
+		fmt.Println("XXX")
 		return rr
 	}
 	if br, ok := r.(*bufio.Reader); ok {
