@@ -131,6 +131,8 @@ func (z *reader) Reset(r io.Reader, dict []byte) error {
 	*z = reader{decompressor: z.decompressor, digest: z.digest}
 	if fr, ok := r.(flate.Reader); ok {
 		z.r = fr
+	} else if br, ok := r.(*bufio.Reader); ok {
+		z.r = br
 	} else {
 		z.r = bufio.NewReader(r)
 	}

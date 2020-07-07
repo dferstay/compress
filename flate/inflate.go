@@ -924,6 +924,9 @@ func makeReader(r io.Reader) Reader {
 	if rr, ok := r.(Reader); ok {
 		return rr
 	}
+	if br, ok := r.(*bufio.Reader); ok {
+		return br
+	}
 	return bufio.NewReader(r)
 }
 
